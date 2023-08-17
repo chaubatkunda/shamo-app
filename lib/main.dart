@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shamo_app/pages/sign_in_page.dart';
+import 'package:shamo_app/pages/sign_up_page.dart';
+import 'package:shamo_app/pages/splash_page.dart';
 import 'theme.dart';
-import 'pages/splash_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -9,9 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashPage(),
+      routes: {
+        '/': (context) => const SplashPage(),
+        '/sign-in': (context) => const SignInPage(),
+        '/sign-up': (context) => const SignUpPage(),
+      },
     );
   }
 }
