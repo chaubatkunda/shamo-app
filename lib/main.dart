@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:shamo_app/pages/sign_in_page.dart';
 import 'package:shamo_app/pages/sign_up_page.dart';
 import 'package:shamo_app/pages/splash_page.dart';
-import 'theme.dart';
+import 'package:shamo_app/pages/home/main_page.dart';
+import 'package:provider/provider.dart';
+import 'package:shamo_app/provaiders/auth_provaider.dart';
 
 void main() => runApp(const MyApp());
 
@@ -11,28 +13,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        '/': (context) => const SplashPage(),
-        '/sign-in': (context) => const SignInPage(),
-        '/sign-up': (context) => const SignUpPage(),
-      },
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(
-          'Hello World',
-          style: secondaryTextStyle,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AuthProvaider(),
         ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          '/': (context) => const SplashPage(),
+          '/sign-in': (context) => const SignInPage(),
+          '/sign-up': (context) => const SignUpPage(),
+          '/home': (context) => const MainPage()
+        },
       ),
     );
   }

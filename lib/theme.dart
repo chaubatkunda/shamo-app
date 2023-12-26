@@ -10,10 +10,12 @@ const priceColor = Color(0xff2C96F1);
 const backgroundColor1 = Color(0xff1F1D2B);
 const backgroundColor2 = Color(0xff2B2937);
 const backgroundColor3 = Color(0xff242231);
+const backgroundColor4 = Color(0xff252836);
 const primaryTextColor = Color(0xffF1F0F2);
 const secondaryTextColor = Color(0xff999999);
-
 const subTitleColor = Color(0xff504F5E);
+Color transparentColor = Colors.transparent;
+Color blackColor = Color(0xff2E2E2E);
 
 TextStyle primaryTextStyle = GoogleFonts.poppins(
   color: primaryTextColor,
@@ -30,6 +32,10 @@ TextStyle subtitleTextStyle = GoogleFonts.poppins(
 
 TextStyle purpelTextStyle = GoogleFonts.poppins(
   color: primaryColor,
+);
+
+TextStyle blackTextStyle = GoogleFonts.poppins(
+  color: blackColor,
 );
 
 FontWeight light = FontWeight.w300;
