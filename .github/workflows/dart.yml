@@ -1,0 +1,39 @@
+name: Flutter iOS Build
+
+on:
+  push:
+    branches:
+      - master  # Ganti dengan branch utama Anda
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: 'stable'  # Versi Flutter yang ingin Anda gunakan, bisa juga menggunakan beta atau dev
+        channel: 'stable'  # Channel Flutter yang ingin Anda gunakan
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Build iOS IPA
+      run: flutter build ios --release --no-codesign
+
+    - name: Archive and Export IPA
+      run: |
+        mkdir -p $HOME/build/outputs/ipa
+        cp -r build/ios/Runner.app $HOME/build/outputs/ipa/
+        cd $HOME/build/outputs/ipa/
+        zip -r app.zip Runner.app
+
+    - name: Upload IPA
+      uses: actions/upload-artifact@v2
+      with:
+        name: ios-ipa
+        path: $HOME/build/outputs/ipa/app.zip
